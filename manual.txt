@@ -7,7 +7,7 @@
 # docker push cr.yandex/crpcdq7bv64i56fgkohq/calc:1
 # docker run -p 80:8000 cr.yandex/crpcdq7bv64i56fgkohq/calc:1
 
-
+вв
 
 #pip freeze>requirements.txt
 
