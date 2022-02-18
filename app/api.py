@@ -1,5 +1,5 @@
 import os
-import re
+from app.services import calculate
 
 from fastapi import APIRouter
 
@@ -14,27 +14,10 @@ async def root():
 
 # http://127.0.0.1:8000/calc?expression=[+](7.322)[(*)(12.32233)]*,
 @api_router.get('/calc', status_code=201)
-async def read_expression(expression: str):
-    return {'api_key': expression}
+async def read_expression(expression):
+    result = calculate(expression)
 
-
-# http://127.0.0.1:8000/calc?expression=[+](7.322)[(*)(12.32233)]*,
-@api_router.get('/test', status_code=201)
-async def read_expression():
-    # expression = '+(7.322)[(*  )(12. 32233)]5 '
-    expression = '+(2.)(+)(100.1)'
-    # request = expression.replace(' ', '').replace('[', '').replace(']', '')
-    pattern = '['
-    # request = re.split('''
-    #
-    #        ''', expression, maxsplit=1)
-
-    request = re.split(r'\[|\]|\(|\)', expression.replace(" ", ""), maxsplit=12)
-    ex = []
-    for i in request:
-        if i != '':
-            ex.append(i)
-    return {'expression': ex}
+    return result
 
 # @api_router.get("/start/", status_code=201)
 # async def start():

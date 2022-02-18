@@ -1,11 +1,11 @@
 # Test your FastAPI endpoints
 
 GET http://127.0.0.1:8000/
-Accept: application/json
+Accept: {'api_key': null}
 
 ###
 
-GET http://127.0.0.1:8000/hello/User
+GET http://127.0.0.1:8000/calc?expression=%2B%284%29%28%2F%29%28%2B0%295
 Accept: application/json
 
 ###
