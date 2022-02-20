@@ -23,36 +23,40 @@ def calculate(expression):
             return False
 
     for i in range(len(request)):
-        if i == (len(request) - 1):
+        if i == (len(request) - 1) and i > 3:
             if is_number(request[i]):
                 if float(request[i]) != 0:
                     result = result * float(request[i])
             else:
-                return {"request": ' '.join(request), "response": "Division by zero", "status": "fail"}
+                result = "Incorrect input format"
+                break
         elif i == 0 and request[i] == '-':
             result = float(request[i + 1]) * (-1)
         elif i == 0 and request[i] == '+':
             result = float(request[i + 1])
         elif is_number(request[i]):
             continue
-        elif request[i] == '+':
+        elif i > 0 and request[i] == '+':
             result = result + float(request[i + 1])
             logger.debug(i)
             logger.debug(result)
-        elif request[i] == '-':
+        elif i > 0 and request[i] == '-':
             result = result - float(request[i + 1])
             logger.debug(i)
             logger.debug(result)
-        elif request[i] == '*':
+        elif i > 0 and request[i] == '*':
             result = result * float(request[i + 1])
-        elif request[i] == '/':
+        elif i > 0 and request[i] == '/':
             logger.debug(i)
             if float(request[i + 1]) == 0:
-                return {"request": ' '.join(request), "response": "Division by zero", "status": "fail"}
+                result = "Division by zero"
+                break
             else:
                 result = result / float(request[i + 1])
+            logger.debug(result)
         else:
-            result = 'Try agayn'
+            result = "Incorrect input format"
+            break
     if is_number(result):
         return {"request": ' '.join(request), "response": round(float(result), 3), "status": "OK"}
     else:
