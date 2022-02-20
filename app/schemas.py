@@ -1,7 +1,4 @@
-from datetime import datetime
-
 from pydantic import BaseModel
-from typing import List
 
 """
 Описываем модели для pydantic
@@ -9,8 +6,12 @@ from typing import List
 """
 
 
-class expression(BaseModel):
-    operation1: int
-    operation1: int
-    number1: int
-    number2: int
+class request(BaseModel):
+    request: str
+    response: str
+    status: str
+
+
+class historyFilter(BaseModel):
+    limit: int
+    status: int

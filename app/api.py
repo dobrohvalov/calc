@@ -1,5 +1,7 @@
 import os
-from app.services import calculate
+
+from app import schemas
+from app import services
 
 from fastapi import APIRouter
 
@@ -12,12 +14,18 @@ async def root():
     return {'api_key': API_KEY}
 
 
-# http://127.0.0.1:8000/calc?expression=[+](7.322)[(*)(12.32233)]*,
-@api_router.get('/calc', status_code=201)
-async def read_expression(expression):
-    result = calculate(expression)
+@api_router.get('/calc', response_model=schemas.request, status_code=201)
+def read_expression(expression):
+    result = services.calculate(expression)
+    request = schemas.request(request=result[0], response=result[1], status=result[2])
+    services.append_history(request)
+    return request
 
-    return result
+
+@api_router.post('/history', status_code=201)
+def read_expression(params: schemas.historyFilter):
+    request = services.get_history(params.limit, params.status)
+    return request
 
 # @api_router.get("/start/", status_code=201)
 # async def start():
