@@ -15,3 +15,9 @@ class request(BaseModel):
 class historyFilter(BaseModel):
     limit: int
     status: int
+
+
+class play(BaseModel):
+    width = int
+    height = int
+    quantity = int

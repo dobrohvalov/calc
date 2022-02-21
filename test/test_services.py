@@ -3,7 +3,7 @@ from app import services
 
 def test_calculate():
     response = services.calculate("[+](7.322)[(*)(12.32233)]0")
-    assert response == ('+ 7.322 * 12.32233 0', 90.224, 'OK')
+    assert response == ('+ 7.322 * 12.32233 0', '90.224', 'OK')
 
 
 def test_calculate_by_zero():
@@ -23,32 +23,32 @@ def test_calculate_first_element():
 
 def test_request_first():
     response = services.calculate("[+](100.1)")
-    assert response == ('+ 100.1', 100.1, 'OK')
+    assert response == ('+ 100.1', '100.1', 'OK')
 
 
 def test_request_second():
     response = services.calculate("[+](0)")
-    assert response == ('+ 0', 0, 'OK')
+    assert response == ('+ 0', '0', 'OK')
 
 
 def test_request_third():
     response = services.calculate("[-](7)(/)(34.2)")
-    assert response == ('- 7 / 34.2', -0.205, 'OK')
+    assert response == ('- 7 / 34.2', '-0.205', 'OK')
 
 
 def test_request_fourth():
     response = services.calculate("[-](6)(*)(2)")
-    assert response == ('- 6 * 2', -12.0, 'OK')
+    assert response == ('- 6 * 2', '-12.0', 'OK')
 
 
 def test_request_fifth():
     response = services.calculate("[-](6)(*)(2)")
-    assert response == ('- 6 * 2', -12.0, 'OK')
+    assert response == ('- 6 * 2', '-12.0', 'OK')
 
 
 def test_request_sixth():
     response = services.calculate("[+](2)(/)(1)")
-    assert response == ('+ 2 / 1', 2, 'OK')
+    assert response == ('+ 2 / 1', '2', 'OK')
 
 
 def test_request_seventh():

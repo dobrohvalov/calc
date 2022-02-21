@@ -5,6 +5,8 @@ from app import services
 
 from fastapi import APIRouter
 
+from app.crosszero import crosszero
+
 api_router = APIRouter(prefix='', tags=["backend"])
 
 
@@ -27,16 +29,8 @@ def read_expression(params: schemas.historyFilter):
     request = services.get_history(params.limit, params.status)
     return request
 
-# @api_router.get("/start/", status_code=201)
-# async def start():
-#     await services.portal_list()
-#     return capture_message('Start intagration')
-#
-#
-# @api_router.post("/setting/", status_code=201)
-# async def get_setting(params: schemas.Portal) -> Dict[str, Any]:
-#     """Получаем настройки из бд, для конкретного портала.
-#     Возвращаем логин, пароль"""
-#     portal = params.portal
-#     request = await crud.get_setting(portal)
-#     return {"tl_logging": request[0], "tl_password": request[1]}
+
+@api_router.post('/crosszero', status_code=201)
+def read_expression(params: schemas.play):
+    request = crosszero(params.width, params.height, params.quantity).play()
+    return request

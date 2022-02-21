@@ -2,7 +2,7 @@ import re
 from loguru import logger
 from app import schemas
 
-logger.add("log/debug.log", format="{time} {level} {message}", level="DEBUG", rotation="10 MB", compression="zip")
+logger.add("log/debug.log", format="{time} {level} {message}", level="ERROR", rotation="10 MB", compression="zip")
 
 history_of_operations = []
 
