@@ -18,6 +18,6 @@ class historyFilter(BaseModel):
 
 
 class play(BaseModel):
-    width = int
-    height = int
-    quantity = int
+    width: int
+    height: int
+    quantity: int

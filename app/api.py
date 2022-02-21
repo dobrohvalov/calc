@@ -32,5 +32,5 @@ def read_expression(params: schemas.historyFilter):
 
 @api_router.post('/crosszero', status_code=201)
 def read_expression(params: schemas.play):
-    request = crosszero(params.width, params.height, params.quantity).play()
+    request = crosszero(params.width, params.height, params.quantity).play
     return request
